@@ -1,8 +1,11 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using System.Diagnostics.CodeAnalysis;
+using TestOkur.Logging.Extensions;
 
 namespace TestOkur.Sabit
 {
+    [ExcludeFromCodeCoverage]
     public class Program
     {
         public static void Main(string[] args)
@@ -15,6 +18,6 @@ namespace TestOkur.Sabit
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                });
+                }).UseLogging();
     }
 }

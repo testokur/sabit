@@ -1,8 +1,8 @@
 ﻿namespace TestOkur.Sabit.Models
 {
-    public class District
+    public class LocalString
     {
-        public int Id { get; set; }
         public string Name { get; set; }
+        public string Value { get; set; }
     }
 }

@@ -23,7 +23,8 @@ namespace TestOkur.Sabit.Tests.EndpointTests
             var client = _webApplicationFactory.CreateClient();
             var response = await client.GetAsync("/api/license-types");
             var licenseTypes = await response.Content.ReadAsAsync<IEnumerable<LicenseType>>();
-            licenseTypes.Should().NotContain(
+            licenseTypes.Should().NotBeEmpty()
+                .And.NotContain(
                 x => x.Id <= 0 ||
                      string.IsNullOrEmpty(x.Name) ||
                      x.MaxAllowedDeviceCount <= 0 ||

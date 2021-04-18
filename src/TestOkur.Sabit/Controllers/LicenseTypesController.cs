@@ -9,24 +9,24 @@ using TestOkur.Sabit.Models;
 namespace TestOkur.Sabit.Controllers
 {
     [ApiController]
-    [Route("/api/cities")]
-    public class CitiesController : ControllerBase
+    [Route("api/license-types")]
+    public class LicenseTypesController : ControllerBase
     {
-        private const string FilePath = "cities.json";
+        private const string FilePath = "license-types.json";
         private const string Dir = "Data";
 
         private readonly IJsonDataSource _jsonDataSource;
 
-        public CitiesController(IJsonDataSource jsonDataSource)
+        public LicenseTypesController(IJsonDataSource jsonDataSource)
         {
             _jsonDataSource = jsonDataSource;
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<City>), StatusCodes.Status200OK)]
-        public Task<IEnumerable<City>> GetAsync()
+        [ProducesResponseType(typeof(IEnumerable<LicenseType>), StatusCodes.Status200OK)]
+        public Task<IEnumerable<LicenseType>> GetAsync()
         {
-            return _jsonDataSource.ReadAsync<IEnumerable<City>>(
+            return _jsonDataSource.ReadAsync<IEnumerable<LicenseType>>(
                 Path.Join(Dir, FilePath));
         }
     }

@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using System;
+using Microsoft.Extensions.DependencyInjection;
 using TestOkur.Sabit.Configuration;
 
 namespace TestOkur.Sabit.Extensions
@@ -9,9 +10,9 @@ namespace TestOkur.Sabit.Extensions
             this IServiceCollection services, AppConfiguration appConfiguration)
         {
             services.AddHealthChecks()
-                .AddRabbitMQ(appConfiguration.RabbitMq.ToUri(), name: "RabbitMq");
-            //TODO: Add SEq, identity server 
-
+                .AddRabbitMQ(appConfiguration.RabbitMq.ToUri(), name: "RabbitMq")
+                .AddIdentityServer(new Uri(appConfiguration.OAuth.Authority));
+            //TODO: Add SEq
             return services;
         }
     }

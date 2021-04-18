@@ -9,3 +9,9 @@ services:
     ports:
       - '6672:5672'
       - '14672:15672'
+  mockserver:
+    image: nazmialtun/mockizen:latest
+    volumes:
+      - ./mockserver:/opt/app/mocks
+    ports:
+      - 10165:8080

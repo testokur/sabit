@@ -2,8 +2,12 @@
 using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
+using MassTransit;
+using Microsoft.Extensions.DependencyInjection;
+using TestOkur.Sabit.Models;
 using TestOkur.Sabit.Tests.Extensions;
 using TestOkur.Sabit.Tests.Fixtures;
+using TestOkur.Testing;
 using Xunit;
 
 namespace TestOkur.Sabit.Tests.EndpointTests
@@ -36,6 +40,20 @@ namespace TestOkur.Sabit.Tests.EndpointTests
             response.IsSuccessStatusCode.Should().BeTrue();
             var imagePath = await response.Content.ReadAsStringAsync();
             imagePath.Should().Contain(testImagePath);
+        }
+
+        [Theory]
+        [TestOkurAutoData]
+        public async Task When_ErrorMessagePosted_Then_ErrorMessageShouldBePublished(
+            ErrorModel model)
+        {
+            var bus =_webApplicationFactory.Services.GetRequiredService<IBusControl>();
+            await bus.StartAsync();
+            var client = _webApplicationFactory.CreateClient();
+            var response = await client.PostAsync(ApiPath, StringContentHelper.Create(model));
+            response.IsSuccessStatusCode.Should().BeTrue();
+            await bus.StopAsync();
+            ErrorConsumer.Received.Count.Should().BeGreaterOrEqualTo(1);
         }
     }
 }

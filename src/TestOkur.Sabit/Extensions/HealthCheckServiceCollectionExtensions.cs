@@ -8,7 +8,9 @@ namespace TestOkur.Sabit.Extensions
         public static IServiceCollection AddHealthChecks(
             this IServiceCollection services, AppConfiguration appConfiguration)
         {
-            services.AddHealthChecks();
+            services.AddHealthChecks()
+                .AddRabbitMQ(appConfiguration.RabbitMq.ToUri(), name: "RabbitMq");
+            //TODO: Add SEq, identity server 
 
             return services;
         }

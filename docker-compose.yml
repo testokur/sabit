@@ -1,0 +1,11 @@
+version: '3.6'
+
+services:
+  rabbitmq:
+    image: rabbitmq:alpine
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    ports:
+      - '6672:5672'
+      - '14672:15672'

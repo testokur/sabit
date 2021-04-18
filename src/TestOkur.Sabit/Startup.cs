@@ -6,6 +6,8 @@ using TestOkur.Configuration.Extensions;
 using TestOkur.HealthCheck;
 using TestOkur.Sabit.Configuration;
 using TestOkur.Sabit.Extensions;
+using TestOkur.Sabit.Infrastructure;
+using TestOkur.Sabit.Services;
 
 namespace TestOkur.Sabit
 {
@@ -25,6 +27,8 @@ namespace TestOkur.Sabit
                 .AddAuthorization()
                 .AddHealthChecks(_appConfiguration)
                 .AddControllers();
+            services.AddSingleton<IJsonDataSource, JsonDataSource>();
+            services.AddSingleton<ICityService, CityService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

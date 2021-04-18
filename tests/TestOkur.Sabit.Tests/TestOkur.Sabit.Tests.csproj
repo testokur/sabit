@@ -29,4 +29,11 @@
     <ProjectReference Include="..\..\src\TestOkur.Sabit\TestOkur.Sabit.csproj" />
     <ProjectReference Include="..\TestOkur.Testing\TestOkur.Testing.csproj" />
   </ItemGroup>
+
+
+  <ItemGroup>
+    <None Update="ss.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>

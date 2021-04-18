@@ -8,5 +8,7 @@ namespace TestOkur.Sabit.Configuration
         public int CacheDurationSec { get; set; }
         [Required]
         public RabbitMqConfiguration RabbitMq { get; set; }
+        [Required]
+        public OAuthConfiguration OAuth { get; set; }
     }
 }

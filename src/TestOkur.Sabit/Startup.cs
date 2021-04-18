@@ -30,7 +30,19 @@ namespace TestOkur.Sabit
                 .AddAuthorization()
                 .AddHealthChecks(_appConfiguration)
                 .AddMemoryCache()
+                .AddResponseCompression()
+                .AddCors(options =>
+                {
+                    options.AddDefaultPolicy(
+                        builder =>
+                        {
+                            builder.AllowAnyHeader()
+                                .AllowAnyMethod()
+                                .AllowAnyOrigin();
+                        });
+                })
                 .AddControllers();
+            services.AddAuthentication();
             services.AddSingleton<IJsonDataSource, JsonDataSource>();
             services.Decorate<IJsonDataSource, CachedJsonDataSource>();
 
@@ -47,6 +59,8 @@ namespace TestOkur.Sabit
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseRouting();
+            app.UseResponseCompression();
+            app.UseCors();
             app.UseAuthorization();
             app.UseAuthentication();
 

@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Threading.Tasks;
 using MassTransit;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +12,7 @@ namespace TestOkur.Sabit.Controllers
 {
     [ApiController]
     [Route("api/errors")]
+    [Authorize]
     public class ErrorsController : ControllerBase
     {
         private readonly IWebHostEnvironment _hostingEnvironment;

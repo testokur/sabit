@@ -1,7 +1,6 @@
 ﻿using FluentAssertions;
 using System.Threading.Tasks;
 using TestOkur.Sabit.Tests.Fixtures;
-using TestOkur.Testing;
 using Xunit;
 using Xunit.Abstractions;
 

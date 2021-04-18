@@ -25,8 +25,10 @@ namespace TestOkur.Sabit
             services.BindConfig(_configuration, out _appConfiguration)
                 .AddAuthorization()
                 .AddHealthChecks(_appConfiguration)
+                .AddMemoryCache()
                 .AddControllers();
             services.AddSingleton<IJsonDataSource, JsonDataSource>();
+            services.Decorate<IJsonDataSource, CachedJsonDataSource>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

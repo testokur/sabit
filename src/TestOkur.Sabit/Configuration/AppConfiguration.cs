@@ -2,5 +2,6 @@
 {
     public class AppConfiguration
     {
+        public int CacheDurationSec { get; set; }
     }
 }
